@@ -5,6 +5,6 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - name: hello
-          run: echo 'hello ad wellcom o github action
+          run: echo 'hello ad wellcom o github action'
         - name: fair well
           run: echo 'see you next time'  
