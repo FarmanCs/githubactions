@@ -49,7 +49,7 @@ jobs:
         run: echo "hello and welcome to your application lets run it"
 
       - name: run the app
-        run: npm run dev
+        run: node index.js
 
       - name: fair well
         run: echo "see you next time"
