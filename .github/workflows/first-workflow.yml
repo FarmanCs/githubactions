@@ -1,10 +1,24 @@
 name: Fisrt work-flow for git hub acitions
-on: workflow_dispatch
+on:
+  push:
+    branches: [main]
 jobs:
   first-job:
-      runs-on: ubuntu-latest
-      steps:
-        - name: hello
-          run: echo 'hello ad wellcom o github action'
-        - name: fair well
-          run: echo 'see you next time'  
+    runs-on: ubuntu-latest
+    steps:
+      - name: hello
+        run: echo 'hello ad wellcom o github action'
+      - name: fair well
+        run: echo 'see you next time'
+  second-job:
+    runs-on: ubuntu-latest
+    needs: first-job #this is call synchronus jobs runing this will wait for first-job to complete then it will start
+    steps:
+      - name: hello
+        run: echo 'hello ad wellcom o github action'
+      - name: install dependencies
+        run: npm install
+      - name: run the app
+        run: npm run dev
+      - name: fair well
+        run: echo 'see you next time'
