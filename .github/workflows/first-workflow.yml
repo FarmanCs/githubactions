@@ -1,30 +1,55 @@
-name: Fisrt work-flow for git hub acitions
+name: First workflow for github actions
+
 on:
   push:
     branches: [main]
+
 jobs:
   first-job:
     runs-on: ubuntu-latest
+    # these below steps are just simple text messa so thats why we don't need to mention the github checkout@v6
     steps:
       - name: hello
-        run: echo 'hello ad wellcom o github action'
+        run: echo "hello and welcome to github actions"
+
       - name: fair well
-        run: echo 'see you next time'
+        run: echo "see you next time"
+
   second-job:
     runs-on: ubuntu-latest
-    needs: first-job #this is call synchronus jobs runing this will wait for first-job to complete then it will start
+    needs: first-job
+
     steps:
-      - name: hello
-        run: echo 'hello ad wellcom o github action'
+      #  IMPORTANT STEP
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
       - name: install dependencies
         run: npm install
+
   third-job:
     runs-on: ubuntu-latest
-    needs: [first-job, second-job] #this is call synchronus jobs runing this will wait for first-job and second-job to complete then it will start
+    needs: [first-job, second-job]
+
     steps:
-      - name: Wellcom to run your app
-        run: echo 'hello and wellcom to your application lets run it'
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Welcome
+        run: echo "hello and welcome to your application lets run it"
+
       - name: run the app
         run: npm run dev
+
       - name: fair well
-        run: echo 'see you next time'
+        run: echo "see you next time"
