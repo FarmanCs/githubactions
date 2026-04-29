@@ -36,7 +36,7 @@ jobs:
         run: echo "hello and welcome to your application lets run it"
 
       - name: Run app
-        run: node index.js
+        run: node index.js &
 
       - name: fair well
         run: echo "see you next time"
