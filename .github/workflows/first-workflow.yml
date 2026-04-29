@@ -32,18 +32,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-  third-job:
-    runs-on: ubuntu-latest
-    needs: [first-job, second-job]
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-
       - name: Welcome
         run: echo "hello and welcome to your application lets run it"
 
