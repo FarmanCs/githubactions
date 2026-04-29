@@ -4,10 +4,12 @@ on:
   push:
     branches: [main]
 
+  schedule:
+    - cron: "*/40 * * * *"
+
 jobs:
   first-job:
     runs-on: ubuntu-latest
-    # these below steps are just simple text messa so thats why we don't need to mention the github checkout@v6
     steps:
       - name: hello
         run: echo "hello and welcome to github actions"
@@ -18,37 +20,34 @@ jobs:
   second-job:
     runs-on: ubuntu-latest
     needs: first-job
-
     steps:
-      #  IMPORTANT STEP
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
           node-version: 24
 
-      - name: install dependencies
+      - name: Install dependencies
         run: npm install
 
   third-job:
     runs-on: ubuntu-latest
     needs: [first-job, second-job]
-
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
           node-version: 24
 
       - name: Welcome
         run: echo "hello and welcome to your application lets run it"
 
-      - name: run the app
+      - name: Run app
         run: node index.js
 
       - name: fair well
